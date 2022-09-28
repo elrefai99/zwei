@@ -1,26 +1,38 @@
-<script setup>
-    
-    const handelDelete = () => {
-        console.log("handelDelete called")
+<script>
+    import axios from "axios";
+
+    export default {
+        data() {
+            return{
+                data: "",
+            }
+        },
+        async created() {
+            const res = await axios.get("http://localhost:1999/api/data/getData");
+            console.log(res.data.data)
+            this.data = res.data.data
+        },
     }
-
-    const titles = [
-        {title: "Handel", loda: 15, rep: 88},
-        {title: "Handel", loda: 15, rep: 8},
-        {title: "Handel", loda: 15, rep: 8},
-        {title: "Handel", loda: 15, rep: 8},
-
-    ]
 </script>
 
 <template>
-    <div v-for="tit of titles">
-        <div bg="#202020" rounded-md mb="-59px" p-6 m="20px auto" relative w="200px">
-        <h4 m="0 0 10px 0" font="1.2em" >{{tit.title}}</h4>
-        <p m-0 font="0.9em"  >Load (kg): 8</p>
-        <p m-0 font="0.9em"  >Number of reps: {{tit.rep}}}</p>
-        <span absolute top="20px" right="20px" cursor-pointer p="6px" rounded-md bg="#101010" @click="handelDelete">Delete</span>
+    <div v-for="int in data" :key="int.id">
+        <div w="90%" m="20px" rounded-md mt="-110px" ml="70px" grid grid-col-3 h="150px" p="5px" bg="#101010">
+            <div p="5px" ml="60px" flex justify-between text="9 #fff center" font="500">
+                <p>
+                    {{int.productName}} - {{int.catagory}}
+                </p>
+                <div block mr="60px" >
+                    <button block w="200px" rounded-md cursor-pointer h="50px" text="5" bg="#505050">Price: {{int.price}}</button>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        Description: {{int.desc}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    
 </template>

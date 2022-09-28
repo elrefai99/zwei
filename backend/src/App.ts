@@ -18,7 +18,7 @@ class App {
     public HandelMiddleware(){
         this.app.use(morgan('dev'))
         this.app.use(cors({
-            origin: 'https://localhost:5137',
+            origin: 'http://127.0.0.1:5173',
         }))
         this.app.use(helmet())
         this.app.use(express.json())

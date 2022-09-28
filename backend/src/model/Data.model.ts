@@ -2,15 +2,15 @@ import { Schema, model, Document } from "mongoose";
 import Data from "../interfaces/Data.interface";
 
 const DataSchema = new Schema({
-    name: {
+    productName: {
         type: String,
         required: true,
     },
-    Price: {
+    price: {
         type: String,
         required: true,
     },
-    Catagory: {
+    catagory: {
         type: String,
         required: true,
     },
